@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FF Championship - Tournament Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span>🔥</span> FF CHAMPIONSHIP</div>
+  <nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#teams">Tim & Pemain</a>
+    <a href="#groups">Grup</a>
+    <a href="#schedule">Jadwal</a>
+    <a href="#input">Input Match</a>
+    <a href="#standings">Klasemen</a>
+    <a href="#history">Riwayat</a>
+    <a href="#grandfinal">Grand Final</a>
+  </nav>
+</header>
+
+<main>
+<section id="dashboard" class="page hero">
+  <div>
+    <p class="eyebrow">FREE FIRE TOURNAMENT MANAGER</p>
+    <h1>FF <span>CHAMPIONSHIP</span></h1>
+    <p class="lead">18 tim • 3 grup • 4 minggu • 3 hari/minggu • 6 game/hari</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b id="statTeams">18</b><small>Total Tim</small></div>
+    <div class="stat"><b id="statMd">0/12</b><small>Matchday</small></div>
+    <div class="stat"><b id="statGames">0/72</b><small>Game Selesai</small></div>
+    <div class="stat"><b id="statLeader">-</b><small>Pemimpin</small></div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="section-title"><h2>Top 5 Sementara</h2><button onclick="exportCSV()">Export CSV</button></div>
+  <div id="top5" class="top-grid"></div>
+</section>
+
+<section class="page">
+  <h2>Sistem Poin</h2>
+  <div class="score-table">
+    <div><b>Posisi</b><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b><b>6</b><b>7</b><b>8</b><b>9</b><b>10</b><b>11-12</b></div>
+    <div><span>Placement Point</span><b>12</b><b>9</b><b>8</b><b>7</b><b>6</b><b>5</b><b>4</b><b>3</b><b>2</b><b>1</b><b>0</b></div>
+  </div>
+  <p class="muted">Setiap kill/eliminasi = 1 poin. Setiap game dihitung terpisah, lalu 6 game dijumlahkan menjadi skor matchday.</p>
+</section>
+
+<section id="teams" class="page">
+  <h2>Tim & Pemain</h2>
+  <p class="muted">Ubah nama tim, 4 pemain, dan logo. Data tersimpan otomatis di browser.</p>
+  <div id="teamsGrid" class="teams-grid"></div>
+</section>
+
+<section id="groups" class="page">
+  <div class="section-title"><div><h2>Pembagian Grup</h2><p class="muted">Acak sendiri pembagian 18 tim menjadi 3 grup, masing-masing 6 tim.</p></div><button onclick="saveGroups()">Simpan Grup</button></div>
+  <div id="groupsGrid" class="groups-grid"></div>
+  <div id="groupMessage"></div>
+</section>
+
+<section id="schedule" class="page">
+  <h2>Jadwal Turnamen</h2>
+  <div class="format-box">
+    <b>Setiap minggu:</b>
+    <span>Hari 1 = A + B</span>
+    <span>Hari 2 = B + C</span>
+    <span>Hari 3 = A + C</span>
+  </div>
+  <div id="scheduleGrid" class="schedule-grid"></div>
+</section>
+
+<section id="input" class="page">
+  <div class="section-title">
+    <div><h2>Input Hasil Matchday</h2><p class="muted">Setiap matchday otomatis berisi 12 tim yang memang bermain. Masukkan hasil untuk 6 game.</p></div>
+  </div>
+  <div class="input-head">
+    <label>Matchday
+      <select id="matchdaySelect" onchange="renderMatchInput()"></select>
+    </label>
+    <div id="mdInfo" class="md-info"></div>
+  </div>
+  <div id="matchInput"></div>
+  <div id="matchdayStanding" class="matchday-standing"></div>
+</section>
+
+<section id="standings" class="page">
+  <div class="section-title"><h2>Klasemen</h2><button onclick="exportCSV()">Download CSV</button></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>Tim</th><th>Grup</th><th>Game</th><th>Booyah</th><th>Kill</th><th>Placement</th><th>Total</th></tr></thead>
+      <tbody id="standingsBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="history" class="page">
+  <h2>Riwayat Matchday</h2>
+  <div id="historyList"></div>
+</section>
+
+<section id="grandfinal" class="page grand">
+  <p class="eyebrow">FINAL QUALIFICATION</p>
+  <h2>🏆 GRAND FINAL</h2>
+  <p class="muted">12 tim teratas setelah seluruh 12 matchday selesai akan lolos ke Grand Final.</p>
+  <div id="grandFinalList"></div>
+</section>
+</main>
+
+<footer>FF Championship Tournament Manager • Data tersimpan di browser (localStorage)</footer>
+<script src="script.js"></script>
+</body>
+</html>
